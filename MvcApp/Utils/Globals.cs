@@ -1,0 +1,33 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Configuration;
+
+namespace MvcApp.Utils
+{
+    public static class Globals
+    {
+        // App config settings
+        public static string ClientId = ConfigurationManager.AppSettings["ida:ClientId"];
+        public static string ClientSecret = ConfigurationManager.AppSettings["ida:ClientSecret"];
+        public static string AadInstance = ConfigurationManager.AppSettings["ida:AadInstance"];
+        public static string Tenant = ConfigurationManager.AppSettings["ida:Tenant"];
+        public static string TenantId = ConfigurationManager.AppSettings["ida:TenantId"];
+        public static string RedirectUri = ConfigurationManager.AppSettings["ida:RedirectUri"];
+
+        // B2C policy identifiers
+        public static string SignUpSignInPolicyId = ConfigurationManager.AppSettings["ida:SignUpSignInPolicyId"];
+        public static string DefaultPolicy = SignUpSignInPolicyId;
+
+        // API Scopes
+        public static string ApiIdentifier = ConfigurationManager.AppSettings["api:ApiIdentifier"];
+        public static string ReadTasksScope = ApiIdentifier + ConfigurationManager.AppSettings["api:ReadScope"];
+        public static string WriteTasksScope = ApiIdentifier + ConfigurationManager.AppSettings["api:WriteScope"];
+        public static string[] Scopes = new string[] { ReadTasksScope, WriteTasksScope };
+
+        // Authorities
+        public static string B2CAuthority = string.Format(AadInstance, Tenant, DefaultPolicy);
+        public static string WellKnownMetadata = $"{AadInstance}/v2.0/.well-known/openid-configuration";
+    }
+}

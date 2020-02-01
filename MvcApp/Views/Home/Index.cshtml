@@ -1,0 +1,32 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <div>
+        <h1>ASP.NET MVC Application</h1>
+        @if (Request.IsAuthenticated)
+        {
+            <h2>Hello @User.Identity.Name !</h2>
+            <h3>
+                @Html.ActionLink("Sign out", "SignOut", "Account")
+            </h3>
+            <h3>
+                @Html.ActionLink("Go to MVC App 2", "Redirect")
+            </h3>
+        }
+        else
+        {
+            <h2>Unauthorized</h2>
+        }
+    </div>
+</body>
+</html>
